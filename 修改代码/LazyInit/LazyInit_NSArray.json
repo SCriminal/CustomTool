@@ -1,0 +1,7 @@
+//Exchange:aryDatas
+- (NSArray *)aryDatas{
+    if (!_aryDatas) {
+        _aryDatas = [NSArray array];
+    }
+    return _aryDatas;
+}

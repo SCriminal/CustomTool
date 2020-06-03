@@ -1,0 +1,13 @@
+#pragma mark 点击事件
+- (void)btnClick:(UIButton *)sender{
+    switch (sender.tag) {
+        case 1:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+}

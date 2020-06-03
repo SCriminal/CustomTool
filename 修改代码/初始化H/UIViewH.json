@@ -1,0 +1,8 @@
+
+@interface ClassName : UIView
+//属性
+PropertyH
+#pragma mark 刷新view
+- (void)resetViewWithModel:(id)model;
+
+@end

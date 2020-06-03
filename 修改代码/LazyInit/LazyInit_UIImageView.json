@@ -1,0 +1,9 @@
+//Exchange:permitImgView
+- (UIImageView *)permitImgView{
+    if (_permitImgView == nil) {
+        _permitImgView = [UIImageView new];
+        _permitImgView.image = [UIImage imageNamed:@"zzrs_qyzz"];
+        _permitImgView.widthHeight = XY(W(15),W(15));
+    }
+    return _permitImgView;
+}

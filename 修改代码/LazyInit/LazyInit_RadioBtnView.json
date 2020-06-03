@@ -1,0 +1,12 @@
+//Exchange:radioView
+- (RadioBtnView *)radioView{
+    if (_radioView == nil) {
+        _radioView = [RadioBtnView initWithAry:@[[ModelBtn modelWithTitle:@"单休"],[ModelBtn modelWithTitle:@"双休"]]];
+        _radioView.backgroundColor = [UIColor whiteColor];
+        WEAKSELF
+        _radioView.blockSelectIndex = ^(NSInteger index){
+            weakSelf.modelDetail.workDaysDe = index+1;
+        };
+    }
+    return _radioView;
+}

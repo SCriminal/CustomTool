@@ -1,0 +1,8 @@
+//Exchange:viewLine
+- (UIView *)viewLine{
+    if (_viewLine == nil) {
+        _viewLine = [UIView new];
+        _viewLine.backgroundColor = COLOR_LINE;
+    }
+    return _viewLine;
+}

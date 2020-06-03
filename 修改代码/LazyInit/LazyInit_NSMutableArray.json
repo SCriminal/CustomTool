@@ -1,0 +1,7 @@
+//Exchange:aryDatas
+- (NSMutableArray *)aryDatas{
+    if (!_aryDatas) {
+        _aryDatas = [NSMutableArray array];
+    }
+    return _aryDatas;
+}

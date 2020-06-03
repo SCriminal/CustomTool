@@ -1,0 +1,21 @@
+//selector view
+#import "SelectorView.h"
+
+@property (nonatomic , strong) SelectorView *selectorView;//筛选view
+
+
+
+.m
+- (SelectorView *)selectorView {
+    if (!_selectorView) {
+        _selectorView = [SelectorView new];
+        _selectorView.typeSelector = ENUM_SELECTOR_CROP;
+        _selectorView.frame = CGRectMake(W(0), W(0), SCREEN_WIDTH, _selectorView.height);
+        WEAKSELF
+        _selectorView.blockSelect = ^(NSString *requestStr){
+            weakSelf.isRemoveAll = true;
+            [weakSelf requestList];
+        };
+    }
+    return _selectorView;
+}

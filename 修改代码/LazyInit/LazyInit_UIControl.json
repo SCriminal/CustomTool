@@ -1,0 +1,11 @@
+//Exchange:clickView
+- (UIControl *)clickView{
+    if (_clickView == nil) {
+        _clickView = [UIControl new];
+        _clickView.tag = 1;
+        [_clickView addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _clickView.backgroundColor = [UIColor clearColor];
+        _clickView.widthHeight = XY(SCREEN_WIDTH,W(0));
+    }
+    return _clickView;
+}

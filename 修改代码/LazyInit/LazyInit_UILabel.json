@@ -1,0 +1,9 @@
+//Exchange:titleLabel
+- (UILabel *)titleLabel{
+    if (_titleLabel == nil) {
+        _titleLabel = [UILabel new];
+        _titleLabel.textColor = <#字体颜色#>;
+        _titleLabel.font =  [UIFont systemFontOfSize:F(<#字体大小#>) weight:UIFontWeightRegular];
+    }
+    return _titleLabel;
+}

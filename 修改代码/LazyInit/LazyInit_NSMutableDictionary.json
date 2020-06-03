@@ -1,0 +1,7 @@
+//Exchange:dicMu
+- (NSMutableDictionary *)dicMu{
+    if (!_dicMu) {
+        _dicMu = [NSMutableDictionary dictionary];
+    }
+    return _dicMu;
+}

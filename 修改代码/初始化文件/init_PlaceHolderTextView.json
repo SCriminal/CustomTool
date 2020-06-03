@@ -1,0 +1,4 @@
+PlaceHolderTextView *testView = [[PlaceHolderTextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+testView.backgroundColor = [UIColor clearColor];
+testView.font = [UIFont systemFontOfSize:F(15)];
+[GlobalMethod setLabel:testView.placeHolder widthLimit:testView.width - W(6) numLines:0 fontNum:F(14) textColor:COLOR_LABEL text:@""];

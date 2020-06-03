@@ -1,0 +1,58 @@
+#import "ClassName.h"
+
+@interface ClassName ()
+@property (nonatomic, strong) NSMutableArray *aryDatas;
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+- (NSMutableArray *)aryDatas{
+    if (!_aryDatas) {
+        _aryDatas = [NSMutableArray array];
+    }
+    return _aryDatas;
+}
+LazyInit
+#pragma mark view did load
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self addSubView];
+
+    //添加subView
+    AddSubView
+    //刷新view
+    RestViewM
+
+}
+
+#pragma mark UITableViewDelegate
+//row num
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.aryDatas.count;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+//cell
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 0.01f;
+}
+//table header
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return  nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
+//table footer
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return nil;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+Other
+@end

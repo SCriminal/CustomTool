@@ -1,0 +1,6 @@
+#import "BaseTableVC.h"
+
+@interface ClassName : BaseTableVC
+
+PropertyH
+@end

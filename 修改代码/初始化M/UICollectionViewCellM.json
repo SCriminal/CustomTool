@@ -1,0 +1,29 @@
+#import "ClassName.h"
+
+@interface ClassName()
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+LazyInit
+#pragma mark 初始化
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
+        AddSubView
+    }
+    return self;
+}
+
+#pragma mark 刷新cell
+- (CGSize)resetCellWithModel:(id)model{
+    [self removeSubViewWithTag:TAG_LINE];//移除线
+    //刷新view
+    RestViewM
+    //设置size
+    self.size = CGSizeMake(<#宽度#>, <#高度#>);
+}
+Other
+@end

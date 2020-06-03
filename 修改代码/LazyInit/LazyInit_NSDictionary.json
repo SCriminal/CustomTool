@@ -1,0 +1,7 @@
+//Exchange:dicTmp
+- (NSDictionary *)dicTmp{
+    if (!_dicTmp) {
+        _dicTmp = [NSDictionary dictionary];
+    }
+    return _dicTmp;
+}

@@ -1,0 +1,35 @@
+#import "ClassName.h"
+
+@interface ClassName ()
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+LazyInit
+#pragma mark 初始化
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor whiteColor];
+        self.width = SCREEN_WIDTH;
+        [self addSubView];
+    }
+    return self;
+}
+//添加subview
+- (void)addSubView{
+    AddSubView
+    //初始化页面
+    [self resetViewWithModel:nil];
+}
+
+#pragma mark 刷新view
+- (void)resetViewWithModel:(id)model{
+    [self removeSubViewWithTag:TAG_LINE];//移除线
+    //刷新view
+    RestViewM
+    //设置总高度
+    self.height = <#高度#>;
+}
+Other
+@end

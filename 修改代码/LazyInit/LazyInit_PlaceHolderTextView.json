@@ -1,0 +1,10 @@
+//Exchange:textView
+- (PlaceHolderTextView *)textView{
+    if (_textView == nil) {
+        _textView = [PlaceHolderTextView new];
+        _textView.backgroundColor = [UIColor whiteColor];
+        _textView.delegate = self;
+	[GlobalMethod setLabel:_textView.placeHolder widthLimit:self.textView.width - W(6) numLines:0 fontNum:F(13) textColor:[UIColor lightGrayColor] text:model.placeHolderStr];
+    }
+    return _textView;
+}

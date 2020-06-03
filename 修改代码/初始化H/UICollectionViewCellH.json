@@ -1,0 +1,8 @@
+
+@interface ClassName : UICollectionViewCell
+
+PropertyH
+#pragma mark 刷新cell
+- (void)resetCellWithModel:(id)model;
+
+@end

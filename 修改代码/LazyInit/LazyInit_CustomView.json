@@ -1,0 +1,7 @@
+//Exchange:noResultView
+- (UIView *)noResultView{
+    if (!_noResultView) {
+        _noResultView = [UIView new];
+    }
+    return _noResultView;
+}

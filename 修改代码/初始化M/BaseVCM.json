@@ -1,0 +1,19 @@
+#import "ClassName.h"
+
+@interface ClassName ()
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+LazyInit
+#pragma mark view did load
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self addSubView];
+    //添加subView
+    AddSubView
+    //刷新view
+    RestViewM
+}
+Other
+@end

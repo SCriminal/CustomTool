@@ -1,0 +1,29 @@
+#import "ClassName.h"
+
+@interface ClassName()
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+LazyInit
+#pragma mark 初始化
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor whiteColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    AddSubView
+    }
+    return self;
+}
+#pragma mark 刷新cell
+- (void)resetCellWithModel:(id)model{
+    [self.contentView removeSubViewWithTag:TAG_LINE];//移除线
+    //刷新view
+    RestViewM
+    //设置总高度
+    self.height = <#cell高度 #>;
+}
+Other
+@end

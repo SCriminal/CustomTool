@@ -1,0 +1,101 @@
+.h
+//滑动view
+#import "SliderView.h"
+
+@interface TestVC : BaseVC
+@property (strong, nonatomic) SliderView *sliderView;
+@property (nonatomic, strong) UIScrollView *scAll;
+
+@end
+
+.m
+#import "TestVC.h"
+@interface TestVC ()<SliderViewDelegate,UIScrollViewDelegate>
+
+@end
+@implementation TestVC
+#pragma mark 懒加载
+- (SliderView *)sliderView{
+    if (_sliderView == nil) {
+        _sliderView = [[SliderView alloc]initWithModels:@[[ModelBtn modelWithTitle:@"仓库名称"],[ModelBtn modelWithTitle:@"库存分析"]] frame:CGRectMake(0, NAVIGATIONBAR_HEIGHT, SCREEN_WIDTH, W(44)) isHasSlider:false isImageLeft:false delegate:self];
+        _sliderView.backgroundColor = [UIColor whiteColor];
+    }
+    return _sliderView;
+}
+- (UIScrollView *)scAll{
+    if (_scAll == nil) {
+        _scAll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.sliderView.bottom +1, SCREEN_WIDTH, SCREEN_HEIGHT - self.sliderView.bottom -1)];
+        _scAll.contentSize = CGSizeMake(SCREEN_WIDTH * 2, 0);
+        _scAll.backgroundColor = [UIColor clearColor];
+        _scAll.delegate = self;
+        _scAll.pagingEnabled = true;
+        _scAll.showsVerticalScrollIndicator = false;
+        _scAll.showsHorizontalScrollIndicator = false;
+    }
+    return _scAll;
+}
+
+#pragma mark 初始化
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        [self.view addSubview:self.sliderView];
+        [self.view addSubview:self.scAll];
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //创建导航栏
+    [self.view addSubview:[BaseNavView initNavBackTitle:@"应用案例" rightTitle:@"管理" rightBlock:^{
+                           
+                           }]];
+    [self setupChildVC];
+}
+
+/**
+ * 初始化子控制器
+ */
+- (void)setupChildVC
+{
+    /*
+    WDViewController *all = [[WDViewController alloc] init];
+    all.view.frame = CGRectMake(0, 0, self.scAll.width, self.scAll.height);
+    [self addChildViewController:all];
+    
+    YDViewController *yj = [[YDViewController alloc]init];
+    yj.view.frame = CGRectMake(SCREEN_WIDTH, 0, self.scAll.width, self.scAll.height);
+    [self addChildViewController:yj];
+    
+    [self.scAll addSubview:all.view];
+    [self.scAll addSubview:yj.view];
+     */
+}
+
+#pragma mark scrollview delegat
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self fetchCurrentView];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate) {
+        [self fetchCurrentView];
+    }
+}
+- (void)fetchCurrentView {
+    // 获取已经滚动的比例
+    double ratio = self.scAll.contentOffset.x / SCREEN_WIDTH;
+    int    page  = (int)(ratio + 0.5);
+    // scrollview 到page页时 将toolbar调至对应按钮
+    [self.sliderView sliderToIndex:page noticeDelegate:NO];
+}
+
+#pragma mark slider delegate
+- (void)protocolSliderViewBtnSelect:(NSUInteger)tag btn:(CustomSliderControl *)control{
+    [UIView animateWithDuration:0.5 animations:^{
+     self.scAll.contentOffset = CGPointMake(SCREEN_WIDTH * tag, 0);
+     } completion:^(BOOL finished) {
+     
+     }];
+}
+@end

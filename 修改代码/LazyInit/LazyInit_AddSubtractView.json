@@ -1,0 +1,8 @@
+//Exchange:addView
+- (AddSubtractView *)addView{
+    if (_addView == nil) {
+        _addView = [AddSubtractView initWithNum:100];
+        _addView.backgroundColor = COLOR_BACKGROUND;
+    }
+    return _addView;
+}

@@ -1,0 +1,14 @@
+//Exchange:textField
+- (UITextField *)textField{
+    if (_textField == nil) {
+        _textField = [UITextField new];
+        _textField.font = [UIFont systemFontOfSize:F(15)];
+        _textField.textAlignment = NSTextAlignmentRight;
+        _textField.textColor = COLOR_DETAIL;
+        _textField.borderStyle = UITextBorderStyleNone;
+        _textField.backgroundColor = [UIColor whiteColor];
+        _textField.delegate = self;
+        [_textField addTarget:self action:@selector(textFileAction:) forControlEvents:(UIControlEventEditingChanged)];
+    }
+    return _textField;
+}

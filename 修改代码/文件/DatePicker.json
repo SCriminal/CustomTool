@@ -1,0 +1,5 @@
+DatePicker * datePickerView = [DatePicker initWithBlock:^(NSDate *date) {
+                     self.modelBeigin.date = date;
+                     [self.tableView reloadData];
+                     }];
+[self.view addSubview:datePickerView];

@@ -1,0 +1,29 @@
+#import "ClassName.h"
+
+@interface ClassName ()
+@end
+
+@implementation ClassName
+#pragma mark 懒加载
+LazyInit
+#pragma mark 初始化
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self addSubView];
+    }
+    return self;
+}
+//添加subview
+- (void)addSubView{
+    AddSubView
+}
+
+#pragma mark 刷新view
+- (void)resetWithModel:(id)model{
+    [GlobalMethod removeAllSubView:self withTag:TAG_LINE];//移除线
+    //刷新view
+    RestViewM
+}
+Other
+@end

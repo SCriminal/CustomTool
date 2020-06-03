@@ -1,0 +1,1 @@
+    [mutableDict setValue:[GlobalMethod exchangeAryModelToAryDic:self.{ARRAY_GETTER_NAME_LOWERCASE}] forKey:%@];

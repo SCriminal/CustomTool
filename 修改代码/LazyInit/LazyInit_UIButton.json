@@ -1,0 +1,16 @@
+//Exchange:submitButton
+-(UIButton *)submitButton{
+    if (_submitButton == nil) {
+        _submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _submitButton.tag = 1;
+        [_submitButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _submitButton.backgroundColor = [UIColor clearColor];
+        _submitButton.titleLabel.font = [UIFont systemFontOfSize:F(18)];
+        [_submitButton setTitle:@"<#title#>" forState:(UIControlStateNormal)];
+        [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _submitButton.widthHeight = XY(W(30),W(40));
+        [_submitButton addRoundCorner:UIRectCornerTopLeft|UIRectCornerTopRight|UIRectCornerBottomLeft| UIRectCornerBottomRight radius:5 lineWidth:0 lineColor:[UIColor clearColor]];
+
+    }
+    return _submitButton;
+}

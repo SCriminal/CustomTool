@@ -1,0 +1,84 @@
+
+#pragma mark view did load
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //table
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - NAVIGATIONBAR_HEIGHT - W(44));
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerClass:[ProductCustomSaledLIstCell class] forCellReuseIdentifier:@"ProductCustomSaledLIstCell"];
+    //find index
+    [self.sectionIndexView resetWithAry:self.aryDatas tableView:self.tableView viewShow:self.view rightCenterY:XY(SCREEN_WIDTH, self.tableView.centerY)];
+    WEAKSELF
+    self.tableView.blockReloadData = ^(void){
+        [weakSelf.sectionIndexView resetWithAry:weakSelf.aryDatas tableView:weakSelf.tableView viewShow:weakSelf.view rightCenterY:XY(SCREEN_WIDTH, weakSelf.tableView.centerY)];
+    };
+    //read from local
+    [self readFromLocal];
+}
+#pragma mark read from local
+- (void)readFromLocal {
+    WEAKSELF
+    [GlobalMethod asynthicBlock:^{
+        STRONGSELF
+        NSMutableArray * aryLocal =  [GlobalMethod readAry:[NSString stringWithFormat:@"%@%.f",NSStringFromClass([self class]),self.modelProduct.iDProperty] modelName:@"ModelCustomerListItem"];
+        self.aryDatas = [GlobalMethod exchangeAryToSectionWithIndex:aryLocal keyPath:@"contName"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self requestList];
+        });
+    }];
+}
+#pragma mark table delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProductCustomRemindListVC * vc = [ProductCustomRemindListVC new];
+    vc.modelProduct = self.modelProduct;
+    vc.modelCustomer = self.aryDatas[indexPath.row];
+    [GB_Nav pushViewController:vc animated:true];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.aryDatas.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    ModelAryIndex * modelSection = self.aryDatas[section];
+    return modelSection.aryMu.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProductCustomSaledLIstCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCustomSaledLIstCell" forIndexPath:indexPath];
+    ModelAryIndex * modelSection = self.aryDatas[indexPath.section];
+    [cell resetCellWithModel:modelSection.aryMu[indexPath.row]];
+    return cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ModelAryIndex * model = self.aryDatas[section];
+    return [GlobalMethod resetTitle:model.strFirst];
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return [GlobalMethod fetchTitleHeight];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [ProductCustomSaledLIstCell fetchHeight:nil];
+}
+
+#pragma mark reuest
+- (void)requestList{
+    [RequestApi requestHasCusListWithPid:[NSString stringWithFormat:@"%.f",self.modelProduct.iDProperty] rowid:@"0" top:@"0" update:@"0" delegate:self.requestDelegate success:^(NSDictionary *response, id mark) {
+        //数据转换
+        NSArray * ary = [GlobalMethod exchangeDic:response toAryWithModelName:self.strModelName];
+        self.aryDatas = [GlobalMethod exchangeAryToSectionWithIndex:ary keyPath:@"contName"];
+        [self.tableView reloadData];
+
+        //保存本地
+        [GlobalMethod asynthicBlock:^{
+            [GlobalMethod writeAryWithID:ary key:[NSString stringWithFormat:@"%@%.f",NSStringFromClass([self class]),self.modelProduct.iDProperty]];
+        }];
+        
+    } failure:^(NSString *errorStr, id mark) {
+        
+    }];
+}
+
+

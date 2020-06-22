@@ -13,9 +13,9 @@
 #define TIME_ALL_SHOW @"yyyy-MM-dd HH:mm:ss"
 #define TIME_SEC_SHOW @"HH:mm:ss"
 
-#define TIME0 @"08:00:30"
+#define TIME0 @"08:23:10"
 #define TIME1 @"11:30:15"
-#define TIME2 @"12:31:00"
+#define TIME2 @"12:41:00"
 #define TIME3 @"18:30:15"
 
 
@@ -161,6 +161,8 @@
           NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
         NSString * nextDay = [GlobalMethod exchangeDate:newDate formatter:TIME_DAY_SHOW];
         self.date0 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",nextDay,TIME0] formatter:TIME_ALL_SHOW];
+        int min = random()%5;
+        self.date0 = [self.date0 dateByAddingTimeInterval:min*60];
         self.time0.text = [GlobalMethod exchangeDate:self.date0 formatter:TIME_ALL_SHOW];
         [self jumpToDing];
         return;
@@ -179,6 +181,8 @@
           NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
         NSString * nextDay = [GlobalMethod exchangeDate:newDate formatter:TIME_DAY_SHOW];
         self.date2 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",nextDay,TIME2] formatter:TIME_ALL_SHOW];
+        int min = random()%10;
+        self.date2 = [self.date2 dateByAddingTimeInterval:min*60];
         self.time2.text = [GlobalMethod exchangeDate:self.date2 formatter:TIME_ALL_SHOW];
         [self jumpToDing];
         return;

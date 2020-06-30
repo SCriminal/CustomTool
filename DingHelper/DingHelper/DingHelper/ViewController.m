@@ -102,11 +102,19 @@
    
 
     self.date0 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",strDay,TIME0] formatter:TIME_ALL_SHOW];
+    int min = random()%5;
+    self.date0 = [self.date0 dateByAddingTimeInterval:min*60];
+    
     self.date1 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",strDay,TIME1] formatter:TIME_ALL_SHOW];
+    
     self.date2 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",strDay,TIME2] formatter:TIME_ALL_SHOW];
+    min = random()%10;
+    self.date2 = [self.date2 dateByAddingTimeInterval:min*60];
+
     self.date3 = [GlobalMethod exchangeStringToDate:[NSString stringWithFormat:@"%@ %@",strDay,TIME3] formatter:TIME_ALL_SHOW];
     
     self.time0.text = [GlobalMethod exchangeDate:self.date0 formatter:TIME_ALL_SHOW];
+    
     self.time1.text = [GlobalMethod exchangeDate:self.date1 formatter:TIME_ALL_SHOW];
     self.time2.text = [GlobalMethod exchangeDate:self.date2 formatter:TIME_ALL_SHOW];
     self.time3.text = [GlobalMethod exchangeDate:self.date3 formatter:TIME_ALL_SHOW];

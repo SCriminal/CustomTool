@@ -64,7 +64,9 @@
 
 - (void)loadJSONWithString:(NSString *)string outputLanguageWriter:(id<OutputLanguageWriterProtocol>)writer {
     //sld_change
-    string = [string stringByReplacingOccurrencesOfString:@"null" withString:@"\"\""];
+    string = [string stringByReplacingOccurrencesOfString:@"" withString:@""];
+
+    string = [string stringByReplacingOccurrencesOfString:@":null" withString:@":\"\""];
     [self loadJSONWithData:[string dataUsingEncoding:NSUTF8StringEncoding] outputLanguageWriter:writer];
 }
 
